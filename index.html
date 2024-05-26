@@ -1,60 +1,487 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta name="google-site-verification" content="ftFOlJETX-2KNjaPh8W6s8lhigItRuu9fOmjHZZ0nY0" />
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-  <title>Enhancing Zero-shot Text-to-Speech Synthesis with Human Feedback</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhancing Zero-shot Text-to-Speech Synthesis with Human Feedback</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<style type="text/css">
-  table {
-    width: 100%;
-    table-layout: fixed;
-  }
-
-  audio {
-    width: 100%;
-  }
-
-  thead>tr>th:first-child {
-    width: 96px;
-  }
-
-  @media (max-width: 767px) {
-    .big-screen {
-      display: none;
-    }
-  }
-
-  @media (min-width: 767px) {
-    .small-screen {
-      display: none;
-    }
-  }
-</style>
-
 <body>
-  <header class="header">
-    <div class="jumbotron bg-secondary text-center">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-12">
-            <h1><a class="text-light"
-                href="">Enhancing Zero-shot Text-to-Speech Synthesis with Human Feedback</a></h1>
-            <p><a class="text-light">Anonymous Submission to NeurIPS 2024<br>
-               </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
- </body>  
+    <header>
+        <h1>Enhancing Zero-shot Text-to-Speech Synthesis with Human Feedback</h1>
+        <p>NeurIPS 2024 Conference Submission</p>
+    </header>
+
+    <section>
+        <h2>Abstract</h2>
+        <p>In recent years, text-to-speech (TTS) technology has witnessed impressive advancements, particularly with large-scale training datasets, showcasing human-level speech quality and impressive zero-shot capabilities on unseen speakers. However, despite human subjective evaluations, such as the mean opinion score (MOS), remaining the gold standard for assessing the quality of synthetic speech, even state-of-the-art TTS approaches have kept human feedback isolated from training that resulted in mismatched training objectives and evaluation metrics. In this work, we investigate a novel topic of integrating subjective human evaluation into the TTS training loop. Inspired by the recent success of reinforcement learning from human feedback, we propose a comprehensive sampling-annotating-learning framework tailored to TTS optimization, namely uncertainty-aware optimization (UNO). Specifically, UNO eliminates the need for a reward model or preference data by directly maximizing the utility of speech generations while considering the uncertainty that lies in the inherent variability in subjective human speech perception and evaluations. Experimental results of both subjective and objective evaluations demonstrate that UNO considerably improves the zero-shot performance of TTS models in terms of MOS, word error rate, and speaker similarity. Additionally, we present a remarkable ability of UNO that it can adapt to the desired speaking style in emotional TTS seamlessly and flexibly.
+        </p>
+    </section>
+
+    <section>
+        <h2>UNO Framework</h2>
+        <img src="images/fig1.jpg" alt="The sampling-annotating-learning framework of UNO." style="width:100%; max-width:600px; display:block; margin:auto;">
+    </section>
+
+    <section>
+        <h2>Comparison of TTS Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sample</th>
+                    <th>VoiceCraft</th>
+                    <th>UNO </th>
+                    <th>Types</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Repeat this block for each comparison -->
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_0.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_0.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Speech quality</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_183.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_183.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Speech quality</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_9.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_9.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Flaw</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_33.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_33.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Flaw</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_76.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_76.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Flaw</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_78.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_78.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Flaw</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_119.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_119.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Flaw</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_172.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_172.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Flaw</td>
+                </tr>
+                <tr>
+                    <td>9</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_185.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_185.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Flaw</td>
+                </tr>
+                <tr>
+                    <td>10</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_130.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_130.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Wrong words</td>
+                </tr>
+                <tr>
+                    <td>11</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_177.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_177.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Wrong words</td>
+                </tr>
+                <tr>
+                    <td>12</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_28.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_28.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Rhythm</td>
+                </tr>
+                <tr>
+                    <td>13</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_111.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_111.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Rhythm</td>
+                </tr>
+                <tr>
+                    <td>14</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_116.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_116.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Rhythm</td>
+                </tr>
+                <tr>
+                    <td>15</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_121.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_121.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Rhythm</td>
+                </tr>
+                <tr>
+                    <td>16</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_135.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_135.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Rhythm</td>
+                </tr>
+                <tr>
+                    <td>17</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_127.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_127.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Pitch</td>
+                </tr>
+                <tr>
+                    <td>18</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_148.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_148.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Pitch</td>
+                </tr>
+                <tr>
+                    <td>19</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_158.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_158.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Pitch</td>
+                </tr>
+                <tr>
+                    <td>20</td> 
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/vc_168.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_bad/uno_168.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Failure</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Emotional TTS Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sample</th>
+                    <th>VoiceCraft</th>
+                    <th>UNO (happy)</th>
+                    <th>UNO (surprise)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Repeat this block for each emotional TTS comparison -->
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/vc_1.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/happy_1.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/surprise_1.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/vc_2.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/happy_2.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/surprise_2.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/vc_3.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/happy_3.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/surprise_3.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/vc_4.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/happy_4.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/surprise_4.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/vc_5.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/happy_5.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="audios/saved_emo/surprise_5.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </section>
+</body>
 </html>
