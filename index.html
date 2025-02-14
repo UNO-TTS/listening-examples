@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhancing Zero-shot Text-to-Speech Synthesis with Human Feedback</title>
+    <title>Improving Zero-shot Text-to-Speech Synthesis with AI Feedback</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Enhancing Zero-shot Text-to-Speech Synthesis with Human Feedback</h1>
+        <h1>Improving Zero-shot Text-to-Speech Synthesis with AI Feedback</h1>
         <p>ICLR 2025 Conference Submission</p>
     </header>
 
     <section>
         <h2>Abstract</h2>
-        <p>In recent years, text-to-speech (TTS) technology has witnessed impressive advancements, particularly with large-scale training datasets, showcasing human-level speech quality and impressive zero-shot capabilities on unseen speakers. However, despite human subjective evaluations, such as the mean opinion score (MOS), remaining the gold standard for assessing the quality of synthetic speech, even state-of-the-art TTS approaches have kept human feedback isolated from training that resulted in mismatched training objectives and evaluation metrics. In this work, we investigate a novel topic of integrating subjective human evaluation into the TTS training loop. Inspired by the recent success of reinforcement learning from human feedback, we propose a comprehensive sampling-annotating-learning framework tailored to TTS optimization, namely uncertainty-aware optimization (UNO). Specifically, UNO eliminates the need for a reward model or preference data by directly maximizing the utility of speech generations while considering the uncertainty that lies in the inherent variability in subjective human speech perception and evaluations. Experimental results of both subjective and objective evaluations demonstrate that UNO considerably improves the zero-shot performance of TTS models in terms of MOS, word error rate, and speaker similarity. Additionally, we present a remarkable ability of UNO that it can adapt to the desired speaking style in emotional TTS seamlessly and flexibly.
+        <p>In recent years, text-to-speech (TTS) technology has witnessed impressive advancements, delivering natural speech quality and remarkable zero-shot performance on unseen speakers. However, despite human subjective evaluations, e.g., mean opinion score (MOS), remaining the gold standard for assessing the quality of synthetic speech, even state-of-the-art TTS approaches have kept MOS isolated from training that resulted in mismatched training objectives and evaluation metrics. In this work, we investigate a novel topic of integrating holistic feedback into the TTS training loop, and propose a comprehensive sampling-annotating-learning framework tailored to TTS optimization, namely uncertainty-aware optimization (UNO). Specifically, UNO leverages neural networks to provide feedback of synthesized samples in a manner akin to human preference judgments, while simultaneously modeling the uncertainty arising from the inherent variability in subjective evaluation. Moreover, we reveal that the TTS model itself can serve as an excellent feedback provider, potentially offering even finer differentiability than human listeners, which reduces bad case rate to only 0.1%. Experimental results of both subjective and objective evaluations demonstrate that UNO considerably improves the zero-shot performance of TTS models in terms of MOS, word error rate, and speaker similarity. Additionally, we present a remarkable ability of UNO that it can adapt to the desired speaking style in emotional TTS seamlessly and flexibly.
         </p>
     </section>
 
